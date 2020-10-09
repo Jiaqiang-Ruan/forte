@@ -72,6 +72,9 @@ class CoNLLNERPredictor(FixedSizeBatchProcessor):
         return input_info
 
     def initialize(self, resources: Resources, configs: Config):
+        #TODO: ner debug "batcher" field is needed inside the config_data
+        configs.add_hparam("batcher", configs.config_data)
+
         super().initialize(resources, configs)
 
         self.resource = resources

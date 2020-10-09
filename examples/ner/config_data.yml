@@ -8,3 +8,6 @@ test_batch_size: 16
 
 max_char_length: 45
 num_char_pad: 2
+
+# TODO: ner debug batch_size is needed. 
+batch_size: 32

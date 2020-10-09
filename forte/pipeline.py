@@ -161,7 +161,6 @@ class Pipeline(Generic[PackType]):
     def initialize(self):
         # The process manager need to be assigned first.
         self._proc_mgr = ProcessManager(len(self._components))
-
         self._reader.assign_manager(self._proc_mgr)
 
         self._reader.initialize(self.resource, self._reader_config)
