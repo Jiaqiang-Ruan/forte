@@ -22,6 +22,7 @@ from forte.evaluation.base.base_evaluator import Evaluator
 from forte.pipeline import Pipeline
 from forte.processors.base import BaseProcessor
 from forte.trainer.base import BaseTrainer
+from forte.process_manager import ProcessManager
 
 logger = logging.getLogger(__name__)
 
@@ -81,7 +82,10 @@ class TrainPipeline:
             # prepare_pl.add(p)
         prepare_pl.run(self.configs.config_data.train_path)
         # TODO: ner debug, transfer back the resource from prepare_pl to train_pl
+        # TODO: ner debug, I hard code to initilize "_process_manager" for predictor
         self.resource.update(**prepare_pl.resource.resources)
+        _proc_mgr = ProcessManager(len(self.preprocessors))
+        self.predictor.assign_manager(_proc_mgr)
 
     def train(self):
         epoch = 0
